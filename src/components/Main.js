@@ -10,8 +10,10 @@ import Commands from './Commands'
 
 const styles = {
   root: {
-    width: 414,
-    height: 736,
+    maxWidth: 1024,
+    maxHeight: 1024,
+    minWidth: 260,
+    minHeight: 320,
     margin: 'auto',
     display: 'flex',
     border: 'solid 1px #aaa',
@@ -21,7 +23,6 @@ const styles = {
     overflow: 'hidden'
   },
   header: {
-    flex: '0 1 132px',
     background: 'linear-gradient(to right, #4A4EC3, #291C7C)'
   },
   messages: {
@@ -55,9 +56,9 @@ const styles = {
   }
 }
 
-const Main = ({ classes, messages, loading, onCommand }) => (
-  <div className={classes.root}>
-    <header className={classes.header} />
+const Main = ({ compact, classes, messages, height, width, loading, onCommand }) => (
+  <div className={classes.root} style={{ height, width }}>
+    <header className={classes.header} style={{ flex: compact ? '0 1 66px' : '0 1 132px' }} />
     <main className={classes.main}>
       <div className={classes.search}>
         <Search />

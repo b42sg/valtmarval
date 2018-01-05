@@ -11,13 +11,17 @@ import { users } from './ducks'
 const styles = () => {
   const reset = {
     margin: 0,
-    padding: 0
+    padding: 0,
+    width: '100%',
+    height: '100%',
+    position: 'relative'
   }
 
   return {
     '@global': {
       html: reset,
-      body: reset
+      body: reset,
+      '#root': reset
     }
   }
 }
