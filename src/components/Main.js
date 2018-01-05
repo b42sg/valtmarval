@@ -25,7 +25,15 @@ const styles = {
     background: 'linear-gradient(to right, #4A4EC3, #291C7C)'
   },
   messages: {
-    flex: '1 1 auto'
+    flex: '1 1 auto',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  messagesHeightHelper: {
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    overflowY: 'hidden'
   },
   search: {
     marginTop: '-13px'
@@ -47,7 +55,7 @@ const styles = {
   }
 }
 
-const App = ({ classes }) => (
+const Main = ({ classes, messages, loading, onCommand }) => (
   <div className={classes.root}>
     <header className={classes.header} />
     <main className={classes.main}>
@@ -55,10 +63,12 @@ const App = ({ classes }) => (
         <Search />
       </div>
       <div className={classes.messages}>
-        <Messages />
+        <div className={classes.messagesHeightHelper}>
+          <Messages data={messages} loading={loading} />
+        </div>
       </div>
       <div className={classes.commands}>
-        <Commands />
+        <Commands onCommand={onCommand} />
       </div>
       <div className={classes.controls}>
         <Controls />
@@ -67,4 +77,4 @@ const App = ({ classes }) => (
   </div>
 )
 
-export default withStyles(styles)(App)
+export default withStyles(styles)(Main)

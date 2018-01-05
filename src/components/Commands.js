@@ -1,5 +1,7 @@
 import React from 'react'
 import Scrollbars from 'react-custom-scrollbars'
+import { noop } from 'lodash'
+import { pure } from 'recompose'
 import { withStyles, Typography } from 'material-ui'
 
 const styles = {
@@ -29,19 +31,32 @@ const styles = {
   }
 }
 
+const commands = [
+  { command: 'hi', message: 'Hei jeg er kunde' },
+  { command: 'get-update', message: 'Gi meg en oppdatering' },
+  { command: 'sample-1', message: 'Gjør noe annet' },
+  { command: 'sample-2', message: 'Gjør noe annet 1' },
+]
+
 const renderScrollbarsView = props => <div
   {...props}
   style={Object.assign({ padding: '15px 8px' }, props.style)}
 />
 
-const Commands = ({ classes }) => (
+const Commands = ({ classes, onCommand = noop }) => (
   <div className={classes.root}>
     <Scrollbars autoHide renderView={renderScrollbarsView}>
-      <Typography className={classes.item}>Gi meg en oppdatering</Typography>
-      <Typography className={classes.item}>Gjør noe annet</Typography>
-      <Typography className={classes.item}>Gjør noe annet 1</Typography>
+      {commands.map(command => (
+        <Typography
+          key={command.command}
+          onClick={event => onCommand(event, command)}
+          className={classes.item}
+        >
+          {command.message}
+        </Typography>
+      ))}
     </Scrollbars>
   </div>
 )
 
-export default withStyles(styles)(Commands)
+export default withStyles(styles)(pure(Commands))

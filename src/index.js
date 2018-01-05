@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import ValtMarVal from './ValtMarVal'
 import registerServiceWorker from './registerServiceWorker'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<ValtMarVal />, document.getElementById('root'))
 registerServiceWorker()
